@@ -8,7 +8,7 @@
 
 namespace Connect;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Common\Inflector\InflectorFactory;
 
 /**
  * Class Model
@@ -200,10 +200,10 @@ class Model implements \ArrayAccess
                         return new $fqcn($value);
                     }
 
-                    $fqcn = $namespace . ucfirst(Inflector::singularize($key));
+                    $fqcn = $namespace . ucfirst(InflectorFactory::create()->build()->singularize($key));
                     if (strpos($key, '_') !== false) {
                         $fqcn = $namespace . implode('', array_map(function ($word) {
-                            return ucfirst(Inflector::singularize($word));
+                            return ucfirst(InflectorFactory::create()->build()->singularize($word));
                         }, explode('_', $key)));
                     }
                     if (class_exists($fqcn, true)) {
