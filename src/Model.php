@@ -8,7 +8,7 @@
 
 namespace Connect;
 
-use Doctrine\Common\Inflector\InflectorFactory;
+use Doctrine\Inflector\InflectorFactory;
 
 /**
  * Class Model
